@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400,FILL@0..1,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#5a5af6",
+                "background-light": "#f5f5f8",
+                "background-dark": "#101022",
+              },
+              fontFamily: {
+                "display": ["Be Vietnam Pro"]
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<title>Rewards Store</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-white dark:bg-slate-900 overflow-x-hidden shadow-2xl">
+<!-- Header -->
+<div class="flex items-center bg-white dark:bg-slate-900 p-4 pb-2 justify-between sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Rewards Store</h2>
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<p class="text-primary text-sm font-bold leading-normal">500</p>
+</div>
+</div>
+<!-- Categories -->
+<div class="pb-1 bg-white dark:bg-slate-900">
+<div class="flex border-b border-slate-100 dark:border-slate-800 px-4 gap-6 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-3 pt-4 shrink-0" href="#">
+<p class="text-sm font-bold">All Rewards</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 shrink-0" href="#">
+<p class="text-sm font-medium">Food &amp; Drinks</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 shrink-0" href="#">
+<p class="text-sm font-medium">Entertainment</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 shrink-0" href="#">
+<p class="text-sm font-medium">Vouchers</p>
+</a>
+</div>
+</div>
+<!-- Hero Section/Featured -->
+<div class="p-4">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-indigo-600 p-6 text-white">
+<div class="relative z-10">
+<span class="inline-block px-2 py-1 bg-white/20 backdrop-blur-md rounded text-[10px] font-bold uppercase tracking-wider mb-2">Weekly Special</span>
+<h3 class="text-2xl font-bold mb-1">Cheat Day Pass</h3>
+<p class="text-white/80 text-sm mb-4">Go wild! A full day of your favorite treats without any guilt.</p>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-300" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<span class="font-bold">150 Coins</span>
+</div>
+<button class="bg-white text-primary px-6 py-2 rounded-full font-bold text-sm shadow-lg hover:scale-105 transition-transform">Redeem Now</button>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-[120px]">restaurant</span>
+</div>
+</div>
+</div>
+<!-- Reward List -->
+<div class="px-4 pb-20 space-y-4">
+<!-- Movie Night Card -->
+<div class="group flex items-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-16 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">movie</span>
+</div>
+<div class="ml-4 flex-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100 leading-tight">Movie Night</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Premium movie rental voucher</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<span class="text-sm font-bold text-primary">200 Coins</span>
+</div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full text-xs font-bold transition-all">Redeem</button>
+</div>
+<!-- Dessert Card -->
+<div class="group flex items-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-16 rounded-lg bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400 shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">icecream</span>
+</div>
+<div class="ml-4 flex-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100 leading-tight">Sweet Treat</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Double scoop at Scoop-It</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<span class="text-sm font-bold text-primary">80 Coins</span>
+</div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full text-xs font-bold transition-all">Redeem</button>
+</div>
+<!-- Coffee Card -->
+<div class="group flex items-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-16 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">coffee</span>
+</div>
+<div class="ml-4 flex-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100 leading-tight">Coffee Break</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Large latte or cappuccino</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<span class="text-sm font-bold text-primary">50 Coins</span>
+</div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full text-xs font-bold transition-all">Redeem</button>
+</div>
+<!-- Pizza Card -->
+<div class="group flex items-center p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+<div class="size-16 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400 shrink-0">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">local_pizza</span>
+</div>
+<div class="ml-4 flex-1">
+<h4 class="text-base font-bold text-slate-900 dark:text-slate-100 leading-tight">Pizza Party</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Any medium pizza for free</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1">monetization_on</span>
+<span class="text-sm font-bold text-primary">350 Coins</span>
+</div>
+</div>
+<button class="bg-primary/10 text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full text-xs font-bold transition-all">Redeem</button>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 flex justify-around py-3 px-6 pb-6">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="text-[10px] font-medium">Tasks</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">storefront</span>
+<span class="text-[10px] font-bold">Store</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</div>
+</body></html>

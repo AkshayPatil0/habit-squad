@@ -1,0 +1,22 @@
+{
+  "name": "habit-squad",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "server/api",
+    "packages/types"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=server/api\" \"npm run dev --workspace=apps/web\"",
+    "build": "npm run build --workspace=server/api && npm run build --workspace=apps/web",
+    "seed": "npm run seed --workspace=server/api"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0"
+  }
+}
