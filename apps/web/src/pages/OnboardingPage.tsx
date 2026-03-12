@@ -61,9 +61,9 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center">
+    <div className="relative w-full max-w-md mx-auto overflow-hidden bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center">
       <Decorations step={step} />
-      <div className="flex min-h-dvh w-full max-w-md flex-col gap-6 overflow-y-auto overflow-x-hidden shadow-2xl bg-background-light dark:bg-background-dark justify-between py-4 pb-8">
+      <div className="flex min-h-dvh w-full max-w-md flex-col gap-8 overflow-y-auto overflow-x-hidden shadow-2xl bg-background-light dark:bg-background-dark justify-between py-4 pb-8">
         {/* Header / Skip Action */}
         <div className="z-10 flex items-center px-6 justify-end">
           <button
@@ -83,7 +83,7 @@ export default function OnboardingPage() {
                 className="embla__slide flex flex-col justify-around"
                 key={index}
               >
-                <div className="z-10 flex w-full items-center justify-center py-8 px-12">
+                <div className="z-10 flex w-full items-center justify-center pb-8 px-12">
                   <div className="relative w-full aspect-square max-w-[340px]">
                     <div className="absolute inset-0 bg-brand-200/50 rounded-xl rotate-3"></div>
                     <div className="absolute inset-0 bg-brand-400/50 rounded-xl -rotate-3"></div>
@@ -154,38 +154,38 @@ function Decorations({ step }: { step: number }) {
     <>
       {/* Background blobs for style */}
       <div
-        className="fixed top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
         style={{
           transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
         }}
       ></div>
       <div
-        className="fixed top-[20%] right-[-15%] w-80 h-80 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        className="absolute top-[20%] right-[-15%] w-80 h-80 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
         style={{
           transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
         }}
       ></div>
       <div
-        className="fixed bottom-[-5%] left-[5%] w-72 h-72 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        className="absolute bottom-[-5%] left-[5%] w-72 h-72 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
         style={{
           transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
         }}
       ></div>
 
       <div
-        className="fixed top-20 left-10 w-12 h-12 bg-primary/20 rounded-full border-4 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
+        className="absolute top-20 left-10 w-12 h-12 bg-primary/20 rounded-full border-4 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
         style={{
           transform: `translate(${translateQ * 12}px, ${translateQ * -12}px)`,
         }}
       ></div>
       <div
-        className="fixed top-1/2 left-4 w-6 h-6 bg-emerald-400/20 rounded-full pointer-events-none transition-transform duration-1000"
+        className="absolute top-1/2 left-4 w-6 h-6 bg-emerald-400/20 rounded-full pointer-events-none transition-transform duration-1000"
         style={{
           transform: `translate(${translateQ * 10}px, ${translateQ * 10}px)`,
         }}
       ></div>
       <div
-        className="fixed bottom-40 right-10 w-8 h-8 bg-yellow-400/20 rounded-full border-2 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
+        className="absolute bottom-40 right-10 w-8 h-8 bg-yellow-400/20 rounded-full border-2 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
         style={{
           transform: `translate(${translateQ * -15}px, ${translateQ * -15}px)`,
         }}
