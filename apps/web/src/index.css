@@ -97,6 +97,16 @@
     --safe-area-inset-bottom: env(safe-area-inset-bottom);
   }
 
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
   * {
     -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
@@ -106,16 +116,22 @@
     font-family: "Inter", system-ui, sans-serif;
     background-color: #0f0a1e;
     color: #f5f3ff;
-    height: 100%;
     overflow: hidden;
+    width: 100%;
   }
 
   body {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    position: fixed;
+    /* prevent overscroll bounce*/
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    /* iOS velocity scrolling */
   }
 
   #root {

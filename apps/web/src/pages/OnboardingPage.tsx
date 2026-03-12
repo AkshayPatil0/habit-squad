@@ -29,7 +29,6 @@ const STEPS = [
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(1);
-  const [translateQ, setTranslateQ] = useState(1);
   const navigate = useNavigate();
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -50,7 +49,7 @@ export default function OnboardingPage() {
 
   const renderDots = () => {
     return (
-      <div className="flex w-full flex-row items-center justify-center gap-3 py-6">
+      <div className="flex w-full flex-row items-center justify-center gap-3">
         {STEPS.map((_, index) => (
           <div
             key={index}
@@ -61,55 +60,12 @@ export default function OnboardingPage() {
     );
   };
 
-  useEffect(() => {
-    setTranslateQ((q) => q * -1);
-  }, [step]);
-
   return (
     <div className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center">
-      <div className="relative flex h-full min-h-[max(884px,100dvh)] w-full max-w-md flex-col overflow-hidden shadow-2xl bg-background-light dark:bg-background-dark">
-        {/* Background blobs for style */}
-
-        <div
-          className="absolute top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
-          style={{
-            transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
-          }}
-        ></div>
-        <div
-          className="absolute top-[20%] right-[-15%] w-80 h-80 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
-          style={{
-            transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
-          }}
-        ></div>
-        <div
-          className="absolute bottom-[-5%] left-[5%] w-72 h-72 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
-          style={{
-            transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
-          }}
-        ></div>
-
-        <div
-          className="absolute top-20 left-10 w-12 h-12 bg-primary/20 rounded-full border-4 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
-          style={{
-            transform: `translate(${translateQ * 12}px, ${translateQ * -12}px)`,
-          }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-4 w-6 h-6 bg-emerald-400/20 rounded-full pointer-events-none transition-transform duration-1000"
-          style={{
-            transform: `translate(${translateQ * 10}px, ${translateQ * 10}px)`,
-          }}
-        ></div>
-        <div
-          className="absolute bottom-40 right-10 w-8 h-8 bg-yellow-400/20 rounded-full border-2 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
-          style={{
-            transform: `translate(${translateQ * -15}px, ${translateQ * -15}px)`,
-          }}
-        ></div>
-
+      <Decorations step={step} />
+      <div className="flex min-h-dvh w-full max-w-md flex-col gap-6 overflow-y-auto overflow-x-hidden shadow-2xl bg-background-light dark:bg-background-dark justify-between py-4 pb-8">
         {/* Header / Skip Action */}
-        <div className="z-10 flex items-center p-6 pb-2 justify-end">
+        <div className="z-10 flex items-center px-6 justify-end">
           <button
             onClick={handleSkip}
             className="flex items-center justify-end px-4 py-2 hover:bg-primary/10 rounded-full transition-colors z-20 relative"
@@ -120,52 +76,53 @@ export default function OnboardingPage() {
           </button>
         </div>
 
-        <div className="embla">
-          <div className="embla__viewport" ref={emblaRef}>
-            <div className="embla__container">
-              {STEPS.map((step, index) => (
-                <div className="embla__slide" key={index}>
-                  <div className="z-10 flex w-full grow items-center justify-center p-8">
-                    <div className="relative w-full aspect-square max-w-[340px]">
-                      <div className="absolute inset-0 bg-brand-200/50 rounded-xl rotate-3"></div>
-                      <div className="absolute inset-0 bg-brand-400/50 rounded-xl -rotate-3"></div>
-                      {/* <div className="relative w-full h-full bg-linear-to-br from-brand-600 via-brand-500 to-brand-800 rounded-xl p-4 flex items-center justify-center overflow-hidden border-2 border-white/50 dark:border-slate-700/50"> */}
-                      <div className="relative w-full h-full bg-white rounded-3xl p-6 flex items-center justify-center overflow-hidden border-2 border-white/50 dark:border-slate-700/50">
-                        <div
-                          className="h-full w-full z-10"
-                          style={{
-                            backgroundImage: `linear-gradient(var(--color-brand-700), var(--color-brand-700)), url(${step.image})`,
-                            backgroundBlendMode: "soft-light",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                          }}
-                        />
-                        {/* <img
+        <div className="embla__viewport flex-1 min-h-max" ref={emblaRef}>
+          <div className="embla__container h-full">
+            {STEPS.map((step, index) => (
+              <div
+                className="embla__slide flex flex-col justify-around"
+                key={index}
+              >
+                <div className="z-10 flex w-full items-center justify-center py-8 px-12">
+                  <div className="relative w-full aspect-square max-w-[340px]">
+                    <div className="absolute inset-0 bg-brand-200/50 rounded-xl rotate-3"></div>
+                    <div className="absolute inset-0 bg-brand-400/50 rounded-xl -rotate-3"></div>
+                    {/* <div className="relative w-full h-full bg-linear-to-br from-brand-600 via-brand-500 to-brand-800 rounded-xl p-4 flex items-center justify-center overflow-hidden border-2 border-white/50 dark:border-slate-700/50"> */}
+                    <div className="relative w-full h-full bg-white rounded-3xl p-6 flex items-center justify-center overflow-hidden border-2 border-white/50 dark:border-slate-700/50">
+                      <div
+                        className="h-full w-full z-10"
+                        style={{
+                          backgroundImage: `linear-gradient(var(--color-brand-700), var(--color-brand-700)), url(${step.image})`,
+                          backgroundBlendMode: "soft-light",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      />
+                      {/* <img
                           className="w-full h-full object-cover rounded-md"
                           alt="Step 1 characters"
                           src={step.image}
                         /> */}
-                      </div>
                     </div>
                   </div>
-
-                  <div className="z-10 flex flex-col items-center px-8 pb-12 pt-6 w-full">
-                    <h1 className="text-4xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight text-center pb-3">
-                      {step.title}
-                    </h1>
-                    <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-[280px] mx-auto text-center">
-                      {step.description}
-                    </p>
-                  </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="z-10 flex flex-col items-center px-8 w-full gap-3">
+                  <h1 className="text-4xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight text-center">
+                    {step.title}
+                  </h1>
+                  <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed max-w-[280px] mx-auto text-center">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {renderDots()}
 
-        <div className="w-full pb-12 px-6 pt-4">
+        <div className="w-full px-6 flex flex-col gap-4">
           <button
             onClick={() => navigate("/register")}
             className="w-full py-4 px-6 flex gap-2 justify-center items-center rounded-full bg-linear-to-r from-primary to-brand-500 text-white font-bold text-lg shadow-lg shadow-primary/30 active:scale-[0.98] transition-transform"
@@ -173,7 +130,7 @@ export default function OnboardingPage() {
             Get Started <MoveRight />
           </button>
           <div
-            className="mt-4 flex items-center justify-center gap-2 cursor-pointer"
+            className="flex items-center justify-center gap-2 cursor-pointer"
             onClick={() => navigate("/login")}
           >
             <span className="text-slate-500 dark:text-slate-400 text-sm">
@@ -184,5 +141,55 @@ export default function OnboardingPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function Decorations({ step }: { step: number }) {
+  const [translateQ, setTranslateQ] = useState(1);
+  useEffect(() => {
+    setTranslateQ((q) => q * -1);
+  }, [step]);
+
+  return (
+    <>
+      {/* Background blobs for style */}
+      <div
+        className="fixed top-[-10%] left-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        style={{
+          transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
+        }}
+      ></div>
+      <div
+        className="fixed top-[20%] right-[-15%] w-80 h-80 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        style={{
+          transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
+        }}
+      ></div>
+      <div
+        className="fixed bottom-[-5%] left-[5%] w-72 h-72 bg-primary/20 rounded-full blur-3xl transition-transform duration-1000 pointer-events-none"
+        style={{
+          transform: `translate(${translateQ * 100}px, ${translateQ * -100}px)`,
+        }}
+      ></div>
+
+      <div
+        className="fixed top-20 left-10 w-12 h-12 bg-primary/20 rounded-full border-4 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
+        style={{
+          transform: `translate(${translateQ * 12}px, ${translateQ * -12}px)`,
+        }}
+      ></div>
+      <div
+        className="fixed top-1/2 left-4 w-6 h-6 bg-emerald-400/20 rounded-full pointer-events-none transition-transform duration-1000"
+        style={{
+          transform: `translate(${translateQ * 10}px, ${translateQ * 10}px)`,
+        }}
+      ></div>
+      <div
+        className="fixed bottom-40 right-10 w-8 h-8 bg-yellow-400/20 rounded-full border-2 border-white dark:border-slate-800 shadow-sm pointer-events-none transition-transform duration-1000"
+        style={{
+          transform: `translate(${translateQ * -15}px, ${translateQ * -15}px)`,
+        }}
+      ></div>
+    </>
   );
 }
