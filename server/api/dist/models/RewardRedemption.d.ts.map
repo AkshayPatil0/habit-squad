@@ -1,0 +1,1 @@
+{"version":3,"file":"RewardRedemption.d.ts","sourceRoot":"","sources":["../../src/models/RewardRedemption.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,EAAE,EAAE,QAAQ,EAAU,MAAM,UAAU,CAAC;AAEtD,MAAM,WAAW,yBAA0B,SAAQ,QAAQ;IACzD,QAAQ,EAAE,QAAQ,CAAC,KAAK,CAAC,QAAQ,CAAC;IAClC,MAAM,EAAE,QAAQ,CAAC,KAAK,CAAC,QAAQ,CAAC;IAChC,UAAU,EAAE,IAAI,CAAC;CAClB;AAQD,eAAO,MAAM,gBAAgB;;;;OAG5B,CAAC"}
