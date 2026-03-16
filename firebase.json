@@ -1,12 +1,8 @@
 {
   "hosting": {
-    "predeploy": "npm run build --workspace=apps/web",
+    "predeploy": "npm run build --workspace apps/web",
     "public": "apps/web/dist",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
