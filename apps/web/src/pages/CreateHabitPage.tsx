@@ -48,8 +48,8 @@ export default function CreateHabitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
-      <div className="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+    <div className="min-h-dvh bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
+      <div className="relative flex h-auto min-h-dvh w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
         {/* Header */}
         <div className="flex items-center bg-white dark:bg-surface-950 p-4 pb-4 justify-between border-b border-accent/10 sticky top-0 z-10">
           <button

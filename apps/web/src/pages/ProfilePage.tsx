@@ -29,7 +29,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
+      <div className="min-h-dvh flex items-center justify-center bg-background-light dark:bg-background-dark">
         <Loader2 className="w-10 h-10 animate-spin text-accent" />
       </div>
     );
@@ -40,8 +40,8 @@ export default function ProfilePage() {
   const progressPercent = (xpInLevel / 1000) * 100;
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
-      <div className="max-w-md mx-auto bg-white dark:bg-background-dark min-h-screen flex flex-col relative overflow-hidden">
+    <div className="min-h-dvh bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
+      <div className="max-w-md mx-auto bg-white dark:bg-background-dark min-h-dvh flex flex-col relative overflow-hidden">
         <header className="flex items-center justify-between p-6 pb-2">
           <button className="w-10 h-10 flex items-center justify-center rounded-full bg-surface-100 dark:bg-surface-900 text-slate-700 dark:text-slate-200 hover:bg-surface-200 transition-colors">
             <Settings className="w-5 h-5" />

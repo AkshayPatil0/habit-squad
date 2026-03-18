@@ -101,15 +101,15 @@ export default function GroupPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
+      <div className="min-h-dvh flex items-center justify-center bg-background-light dark:bg-background-dark">
         <Loader2 className="w-10 h-10 animate-spin text-accent" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
-      <div className="max-w-md mx-auto bg-white dark:bg-surface-950 min-h-screen flex flex-col shadow-xl relative overflow-hidden">
+    <div className="min-h-dvh bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
+      <div className="max-w-md mx-auto bg-white dark:bg-surface-950 min-h-dvh flex flex-col shadow-xl relative overflow-hidden">
         {/* Header */}
         <div className="flex items-center p-4 sticky top-0 bg-white/80 dark:bg-surface-950/80 backdrop-blur-md z-10 justify-between border-b border-accent/5">
           <button

@@ -37,7 +37,7 @@ export default function LeaderboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark">
+      <div className="min-h-dvh flex items-center justify-center bg-background-light dark:bg-background-dark">
         <Loader2 className="w-10 h-10 animate-spin text-accent" />
       </div>
     );
@@ -48,8 +48,8 @@ export default function LeaderboardPage() {
   const myRank = users.findIndex((u) => u.uid === profile?.uid) + 1;
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
-      <div className="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-accent/10">
+    <div className="min-h-dvh bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
+      <div className="relative flex h-auto min-h-dvh w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-accent/10">
         {/* Header */}
         <div className="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
           <button

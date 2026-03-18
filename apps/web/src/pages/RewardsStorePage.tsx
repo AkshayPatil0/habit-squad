@@ -1,9 +1,9 @@
 export default function RewardsStorePage() {
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
+    <div className="min-h-dvh bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
       {/* Extracted from rewards_store_light.html */}
 
-      <div className="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-white dark:bg-surface-950 overflow-x-hidden shadow-2xl">
+      <div className="relative flex h-auto min-h-dvh w-full max-w-md mx-auto flex-col bg-white dark:bg-surface-950 overflow-x-hidden shadow-2xl">
         {/*  Header  */}
         <div className="flex items-center bg-white dark:bg-surface-950 p-4 pb-2 justify-between sticky top-0 z-10 border-b border-surface-100 dark:border-surface-800">
           <div className="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-surface-100 dark:hover:bg-surface-900 transition-colors cursor-pointer">
