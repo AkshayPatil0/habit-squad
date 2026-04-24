@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { Eye, EyeOff, LogIn, Mail, Lock, Loader2 } from "lucide-react";
@@ -19,6 +19,7 @@ type LoginFormValues = z.infer<typeof loginformSchema>;
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
 
@@ -38,7 +39,10 @@ export default function LoginForm() {
     setAuthError(null);
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
-      navigate("/app/home");
+      
+      const searchParams = new URLSearchParams(location.search);
+      const redirectUrl = searchParams.get("redirect") || "/app/home";
+      navigate(redirectUrl);
     } catch (err: any) {
       console.error("Login error:", err);
       if (err.code === "auth/invalid-credential") {

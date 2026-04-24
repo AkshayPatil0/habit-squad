@@ -43,8 +43,7 @@ export function LeaderboardCard({
       <div className="relative flex-shrink-0">
         <img
           src={
-            entry.avatar ||
-            `https://api.dicebear.com/7.x/avataaars/svg?seed=${entry.name}`
+            entry.avatar || "/avatars/avatar_1.svg"
           }
           alt={entry.name}
           className="w-10 h-10 rounded-full bg-surface-800 border-2 border-white/10"

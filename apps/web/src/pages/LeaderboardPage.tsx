@@ -1,44 +1,39 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { userService, UserProfile } from "../services/firestoreService";
+import { useLeaderboard } from "../hooks/useLeaderboard";
 import {
   ArrowLeft,
   Share2,
   Trophy,
   Flame,
   Coins,
-  Home,
-  BookOpen,
-  User,
   Loader2,
+  AlertCircle,
 } from "lucide-react";
 
 export default function LeaderboardPage() {
   const navigate = useNavigate();
   const { profile } = useAuth();
-  const [users, setUsers] = useState<UserProfile[]>([]);
-  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("Weekly");
 
-  useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        const topUsers = await userService.getTopUsers(50);
-        setUsers(topUsers);
-      } catch (error) {
-        console.error("Error fetching leaderboard:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchLeaderboard();
-  }, []);
+  const { data: users = [], isLoading, isError } = useLeaderboard(50);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="min-h-dvh flex items-center justify-center bg-background-light dark:bg-background-dark">
         <Loader2 className="w-10 h-10 animate-spin text-accent" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="min-h-dvh flex flex-col items-center justify-center gap-3 text-center px-6 bg-background-light dark:bg-background-dark">
+        <AlertCircle className="w-10 h-10 text-red-400" />
+        <p className="font-semibold text-slate-600 dark:text-slate-400">
+          Failed to load leaderboard. Check your connection and try again.
+        </p>
       </div>
     );
   }
@@ -239,15 +234,7 @@ export default function LeaderboardPage() {
             to="/app"
             className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-accent transition-colors"
           >
-            <Home className="w-6 h-6" />
-            <p className="text-[10px] font-bold leading-normal">Home</p>
-          </Link>
-          <Link
-            to="/app/habits"
-            className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-accent transition-colors"
-          >
-            <BookOpen className="w-6 h-6" />
-            <p className="text-[10px] font-bold leading-normal">Habits</p>
+            <span className="text-[10px] font-bold leading-normal">Home</span>
           </Link>
           <Link
             to="/app/leaderboard"
@@ -255,13 +242,6 @@ export default function LeaderboardPage() {
           >
             <Trophy className="w-6 h-6 fill-accent" />
             <p className="text-[10px] font-bold leading-normal">Leaderboard</p>
-          </Link>
-          <Link
-            to="/app/profile"
-            className="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 hover:text-accent transition-colors"
-          >
-            <User className="w-6 h-6" />
-            <p className="text-[10px] font-bold leading-normal">Profile</p>
           </Link>
         </div>
       </div>

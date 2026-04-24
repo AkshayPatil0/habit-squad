@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useUserProfile } from "../hooks/useUserProfile";
 import {
   Settings,
   Share2,
@@ -16,7 +17,12 @@ import {
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const { profile, loading, logout } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
+  // useUserProfile gives us always-fresh data from the TQ cache
+  // (XP/coins auto-update when habit mutations invalidate the profile key)
+  const { data: profile, isLoading: profileLoading } = useUserProfile(user?.uid);
+
+  const loading = authLoading || profileLoading;
 
   const handleLogout = async () => {
     try {
@@ -61,7 +67,7 @@ export default function ProfilePage() {
                   className="w-full h-full rounded-full object-cover"
                   src={
                     profile?.avatar ||
-                    "https://api.dicebear.com/7.x/avataaars/svg?seed=placeholder"
+                    "/avatars/avatar_1.svg"
                   }
                 />
               </div>
@@ -144,7 +150,7 @@ export default function ProfilePage() {
               </button>
             </div>
             <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
-              <div className="flex-shrink-0 w-24 flex flex-col items-center">
+              <div className="shrink-0 w-24 flex flex-col items-center">
                 <div className="w-20 h-20 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center border-4 border-white dark:border-surface-800 shadow-lg mb-2">
                   <Shield className="text-orange-500 w-10 h-10 fill-orange-500/20" />
                 </div>
@@ -152,7 +158,7 @@ export default function ProfilePage() {
                   7 Day Streak
                 </p>
               </div>
-              <div className="flex-shrink-0 w-24 flex flex-col items-center">
+              <div className="shrink-0 w-24 flex flex-col items-center">
                 <div className="w-20 h-20 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center border-4 border-white dark:border-surface-800 shadow-lg mb-2">
                   <BadgeCheck className="text-blue-500 w-10 h-10 fill-blue-500/20" />
                 </div>
@@ -160,7 +166,7 @@ export default function ProfilePage() {
                   Habit Master
                 </p>
               </div>
-              <div className="flex-shrink-0 w-24 flex flex-col items-center opacity-40 grayscale">
+              <div className="shrink-0 w-24 flex flex-col items-center opacity-40 grayscale">
                 <div className="w-20 h-20 rounded-full bg-surface-100 dark:bg-surface-900 flex items-center justify-center border-4 border-white dark:border-surface-800 mb-2">
                   <Lock className="text-slate-400 w-8 h-8" />
                 </div>

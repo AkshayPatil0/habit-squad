@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
@@ -23,6 +23,7 @@ type RegisterFormValues = z.infer<typeof registerformSchema>;
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
 
@@ -52,7 +53,10 @@ export default function RegisterForm() {
         displayName: data.name,
       });
       // Note: Initial Firestore user document creation can be added here or via a Cloud Function
-      navigate("/app/home");
+      
+      const searchParams = new URLSearchParams(location.search);
+      const redirectUrl = searchParams.get("redirect") || "/app/home";
+      navigate(redirectUrl);
     } catch (err: any) {
       console.error("Registration error:", err);
       if (err.code === "auth/email-already-in-use") {

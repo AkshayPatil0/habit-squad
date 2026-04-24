@@ -1,20 +1,27 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { useAuthStore } from "./store/authStore";
 import AppLayout from "./layouts/AppLayout";
 import OnboardingPage from "./pages/OnboardingPage";
 import LoginForm from "./components/Auth/LoginForm";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
-import HabitsPage from "./pages/HabitsPage";
-import CreateHabitPage from "./pages/CreateHabitPage";
-import GroupPage from "./pages/GroupPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import ProfilePage from "./pages/ProfilePage";
 import RegisterForm from "./components/Auth/RegisterForm";
 import ResetPasswordForm from "./components/Auth/ResetPasswordForm";
+import SquadOnboardingPage from "./pages/SquadOnboardingPage";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
+  const location = useLocation();
+  const { user: storeUser } = useAuthStore();
 
   if (loading) {
     return (
@@ -24,7 +31,25 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  return user ? <>{children}</> : <Navigate to="/auth/login" replace />;
+  if (!user) {
+    return (
+      <Navigate
+        to={`/auth/login?redirect=${encodeURIComponent(location.pathname + location.search)}`}
+        replace
+      />
+    );
+  }
+
+  if (
+    storeUser &&
+    storeUser.groups &&
+    storeUser.groups.length === 0 &&
+    location.pathname !== "/squad-onboarding"
+  ) {
+    return <Navigate to="/squad-onboarding" replace />;
+  }
+
+  return <>{children}</>;
 }
 
 function AppRoutes() {
@@ -57,6 +82,14 @@ function AppRoutes() {
         <Route path="reset-password" element={<ResetPasswordForm />} />
       </Route>
       <Route
+        path="/squad-onboarding"
+        element={
+          <PrivateRoute>
+            <SquadOnboardingPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/app"
         element={
           <PrivateRoute>
@@ -66,9 +99,7 @@ function AppRoutes() {
       >
         <Route index element={<Navigate to="home" replace />} />
         <Route path="home" element={<HomePage />} />
-        <Route path="habits" element={<HabitsPage />} />
-        <Route path="habits/new" element={<CreateHabitPage />} />
-        <Route path="group" element={<GroupPage />} />
+        <Route path="activity" element={<ActivityPage />} />
         <Route path="leaderboard" element={<LeaderboardPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>
@@ -78,6 +109,7 @@ function AppRoutes() {
 }
 
 import { Toaster } from "sonner";
+import ActivityPage from "./pages/ActivityPage";
 
 export default function App() {
   return (
